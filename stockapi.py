@@ -18,4 +18,4 @@ def getPrice(name):
         return -1
 
 
-print (getPrice("TSLA"))
+#print (getPrice("TSLA"))

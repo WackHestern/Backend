@@ -33,7 +33,7 @@ def buyStock():
     #data = json.loads(json.dumps(request.json))
     
     #if (stocks.buyStock(data["stockName"], data["amount"])):
-    if (stocks.buyStock("TSLA", 3)):
+    if (stocks.buy("TSLA", 3)):
         return json.dumps({'message': 'success'})
     return json.dumps({'message': 'fail'})
 
