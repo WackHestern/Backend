@@ -37,7 +37,10 @@ def sellStock():
 
 @app.route('/stocks/data', methods =['Post', 'Get'])
 def getStockData():
-    ret = {'message': 'get stock data not implemented'}
+    
+    t = database.runQueryWithResponse("select * from buys")
+    
+    ret = {'message': t}
     return json.dumps(ret)
 
 
