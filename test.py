@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Post a json to flask server
 
 
-@app.route('/', methods=['Post', 'Get'])
+@app.route('/test', methods=['Post'])
 def api_root():
     # validate that user sends in a json
     #if request.headers['Content-Type'] != 'application/json':
