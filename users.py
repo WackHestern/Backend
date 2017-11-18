@@ -4,7 +4,7 @@ import stockapi
 
 def getAvailableFunds():
     try:
-        return database.runQueryWithResponse("select availableFunds from users where name='John Doe';")[0]
+        return database.runQueryWithResponse("select availableFunds from users where name='John Doe';")[0][0]
     except:
         return "-1"
     
