@@ -32,29 +32,30 @@ def api_root():
 @app.route('/stocks/buy', methods=['Post', 'Get'])
 def buyStock():
     
-    #if request.headers['Content-Type'] != 'application/json':
-    #    return json.dumps({'message': 'invalid'})
+    if not request.headers or request.headers['Content-Type'] != 'application/json':
+        return json.dumps({'message': 'invalid post'})
 
-    #data = json.loads(json.dumps(request.json))
+    data = json.loads(json.dumps(request.json))
     
-    #if (stocks.buyStock(data["stockName"], data["amount"])):
-    ret = stocks.buy("TSLA", 3)
+    ret = stocks.buy(data["stockName"], data["amount"])
     return json.dumps({'message': ret})
     #ret = success, fail, insufficient funds
 
 
 @app.route('/stocks/sell', methods=['Post', 'Get'])
 def sellStock():
-    ret = stocks.sell("TSLA", 2)
+    if not request.headers or request.headers['Content-Type'] != 'application/json':
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    
+    ret = stocks.sell(data["stockName"], data["amount"])
     return json.dumps({'message': ret})
     #ret = success, fail, insufficient stocks
 
 
 @app.route('/stocks/data', methods =['Post', 'Get'])
 def getStockData():
-    
-    #t = database.runQueryWithResponse("select * from buys")
-    
     ret = {'buyData': stocks.buyData(), 'sellData': stocks.sellData()}
     return json.dumps(ret)
 
@@ -67,7 +68,12 @@ def getUserAvailableFunds():
 
 @app.route('/user/setfunds', methods = ['Post', 'Get'])
 def setUserFunds():
-    if users.updateFunds(1234):
+    if not request.headers or request.headers['Content-Type'] != 'application/json':
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    
+    if users.updateFunds(data["amount"]):
         return json.dumps({'message': 'success'})
     return json.dumps({'message': 'fail'})
     
@@ -76,11 +82,22 @@ def setUserFunds():
 
 @app.route('/stocks/cansell', methods=['Post', 'Get'])
 def canSellStock():
-    return json.dumps({"result": stocks.canSell("TSLA",2)})
+    if not request.headers or request.headers['Content-Type'] != 'application/json':
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
     
+    return json.dumps({"result": stocks.canSell(data["stockName"], data["amount"])})
+    
+    
+
 @app.route('/stocks/canbuy', methods=['Post', 'Get'])
 def canBuyStock():
-    return json.dumps({"result": stocks.canBuy("TSLA",2)})
+    if not request.headers or request.headers['Content-Type'] != 'application/json':
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    return json.dumps({"result": stocks.canBuy(data["stockName"], data["amount"])})
 
 
 
