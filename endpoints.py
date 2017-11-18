@@ -27,10 +27,10 @@ def api_root():
 @app.route('/stocks/buy', methods=['Post', 'Get'])
 def buyStock():
     
-    if request.headers['Content-Type'] != 'application/json':
-        return json.dumps({'message': 'invalid'})
+    #if request.headers['Content-Type'] != 'application/json':
+    #    return json.dumps({'message': 'invalid'})
 
-    data = json.loads(json.dumps(request.json))
+    #data = json.loads(json.dumps(request.json))
     
     #if (stocks.buyStock(data["stockName"], data["amount"])):
     if (stocks.buyStock("TSLA", 3)):
