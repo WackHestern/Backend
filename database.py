@@ -4,7 +4,7 @@ import psycopg2
 
 def getConn():
     parse.uses_netloc.append("postgres")
-    url = parse.urlparse(os.environ["postgres://norlxajvyplpfe:e24415b89946199f789e67bf4538d4cd9ff9a12c53c4f1a7baeace48e029429e@ec2-23-23-249-169.compute-1.amazonaws.com:5432/d7npj38pkmgv9n"])
+    url = parse.urlparse(os.environ["DATABASE_URL"])
 
     conn = psycopg2.connect(
         database=url.path[1:],
