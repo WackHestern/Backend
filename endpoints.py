@@ -68,11 +68,11 @@ def getUserAvailableFunds():
 
 @app.route('/stocks/cansell', methods=['Post', 'Get'])
 def canSellStock():
-    json.dumps({"result": stocks.canSell("TSLA",2)})
+    return json.dumps({"result": stocks.canSell("TSLA",2)})
     
 @app.route('/stocks/canbuy', methods=['Post', 'Get'])
 def canBuyStock():
-    json.dumps({"result": stocks.canBuy("TSLA",2)})
+    return json.dumps({"result": stocks.canBuy("TSLA",2)})
 
 
 
