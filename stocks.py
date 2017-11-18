@@ -8,6 +8,7 @@ def buy(stockName, amount):
     
     #make sure price is valid
     if (float(price) < 0):
+        print ("failed price check:" + str(price))
         return "fail"
     
     availFunds = float(users.getAvailableFunds())
@@ -17,6 +18,7 @@ def buy(stockName, amount):
         return "insufficient funds"
     
     if not users.updateFunds(availFunds -cost):
+        print ("Can't update DB funds" )
         return "fail" 
     
     database.runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('"+stockName+"','"+str(price)+"',"+str(amount)+")")

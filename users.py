@@ -12,7 +12,7 @@ def getAvailableFunds():
 #returns true if success
 def updateFunds(newAmount):
     try:
-        database.runQueryWithResponse("update user set availableFunds = '"+str(newAmount)+"' where name='John Doe';")
+        database.runQueryWithResponse("update users set availableFunds = '"+str(newAmount)+"' where name='John Doe';")
     except:
         return False
     
