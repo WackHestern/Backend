@@ -67,7 +67,7 @@ def getUserAvailableFunds():
 
 @app.route('/user/setfunds', methods = ['Post', 'Get'])
 def setUserFunds():
-    if users.setAvailableFunds(1234):
+    if users.updateFunds(1234):
         return json.dumps({'message': 'success'})
     return json.dumps({'message': 'fail'})
     
