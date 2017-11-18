@@ -13,7 +13,7 @@ def getConn():
         host=url.hostname,
         port=url.port
     )
-
+    return conn 
 
 def initialize():
     conn = getConn()
