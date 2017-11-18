@@ -1,6 +1,7 @@
 from flask import Flask, json, request
 import database
 import stocks
+import users
 import os
 
 app = Flask(__name__)
@@ -21,7 +22,11 @@ def api_root():
     # do whatever computation you want here
 
     # making something to return
-    returnThing = {'message': 'look its a message'}
+    #returnThing = {'message': 'look its a message'}
+    #return json.dumps(returnThing)
+    
+    database.addTestData()
+    returnThing = {'message': 'adding test data to DB'}
     return json.dumps(returnThing)
 
 @app.route('/stocks/buy', methods=['Post', 'Get'])
@@ -49,8 +54,16 @@ def getStockData():
     
     #t = database.runQueryWithResponse("select * from buys")
     
-    ret = {'message': stocks.data()}
+    ret = {'buyData': stocks.buyData(), 'sellData': stocks.sellData()}
     return json.dumps(ret)
+
+
+@app.route('/user/availablefunds', methods =['Post', 'Get'])
+def getUserAvailableFunds():
+        
+    ret = {'availableFunds': users.getAvailableFunds("John Doe") }
+    return json.dumps(ret)
+
 
 
 if __name__ == '__main__':

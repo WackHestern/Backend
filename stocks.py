@@ -15,8 +15,12 @@ def buy(stockName, amount):
 def sell(stockName, amount):
     pass
 
-def data():
-    return database.runQueryWithResponse("select * from buys") + database.runQueryWithResponse("select * from sells")
+def buyData():
+    return database.runQueryWithResponse("select * from buys")
+
+
+def sellData():
+    return database.runQueryWithResponse("select * from sells")
 
 
 
