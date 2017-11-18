@@ -49,17 +49,28 @@ def sell(stockName, amount):
     
 
 def buyData():
-    return database.runQueryWithResponse("select * from buys")
+    try:
+        return database.runQueryWithResponse("select * from buys")
+    except:
+        print ("error when selecting all from buys")
+        return []
 
 
 def sellData():
-    return database.runQueryWithResponse("select * from sells")
+    try:
+        return database.runQueryWithResponse("select * from sells")
+    except:
+        print ("error when selecting all from sells")
+        return []
 
 
 def getStockCntByName(name):
-    resBuy = database.runQueryWithResponse("select * from buys where name='"+name+"'")
-    resSell = database.runQueryWithResponse("select * from sells where name='"+name+"'")
-    
+    try:
+        resBuy = database.runQueryWithResponse("select * from buys where stockname='"+name+"'")
+        resSell = database.runQueryWithResponse("select * from sells where stockname='"+name+"'")
+    except:
+        print ("error")
+        return 0
     cnt = 0
     
     for x in resBuy:
