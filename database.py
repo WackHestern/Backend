@@ -43,6 +43,7 @@ def runQueryWithResponse(q):
     return ret
 
 def addTestData():
-    runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('apple','120','2') ('apple','23','10') ('google','400','7')")
-    
+    runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('apple','120',2)")
+    runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('google','400',7)")
+    runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('apple','23',10)")
 
