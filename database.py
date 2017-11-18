@@ -22,7 +22,7 @@ def initialize():
     #table to store sells 
     runQuery("CREATE TABLE IF NOT EXISTS sells (stockName varchar(48) NOT NULL, sellPrice varchar(48) NOT NULL, amount INT NOT NULL, timestamp TIMESTAMP DEFAULT NOW());")
     
-    runQuery("CREATE TABLE IF NOT EXISTS user (name varchar(48) NOT NULL, availableFunds varchar(48) NOT NULL);")
+    runQuery("CREATE TABLE IF NOT EXISTS users (name varchar(48) NOT NULL, availableFunds varchar(48) NOT NULL);")
     
 def runQuery(q):
     conn = getConn()
@@ -51,5 +51,5 @@ def addTestData():
     runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('apple','120',2)")
     runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('google','400',7)")
     runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('apple','23',10)")
-    runQuery("INSERT INTO user (name, availablefunds) VALUES ('John Doe','5000.34')")
+    runQuery("INSERT INTO users (name, availablefunds) VALUES ('John Doe','5000.34')")
 
