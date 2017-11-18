@@ -19,6 +19,10 @@ def initialize():
     conn = getConn()
     cur = conn.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS buys (stockName varchar(48) NOT NULL,  buyPrice varchar(48) NOT NULL,timestamp TIMESTAMP DEFAULT NOW(),enabled integer NOT NULL DEFAULT '1');")
+    
+    conn.commit()
+    cur.close()
+    conn.close()
 
 
 
