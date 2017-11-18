@@ -27,9 +27,9 @@ def buy(stockName, amount):
 
 
 def sell(stockName, amount):
-    price = stockapi.getPrice(stockName)
+    price = float(stockapi.getPrice(stockName))
     
-    if (float(price) < 0):
+    if (price < 0):
         print ("failed price check:" + str(price))
         return "fail"
     availFunds = availFunds = float(users.getAvailableFunds())
@@ -37,7 +37,7 @@ def sell(stockName, amount):
     curStockCnt= int(getStockCntByName(stockName))
     amount = int(amount)
     if curStockCnt < amount:
-        return "insufficient stocks
+        return "insufficient stocks"
     
     if not users.updateFunds(availFunds + (amount * price)):
         print ("Can't update DB funds" )
