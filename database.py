@@ -16,8 +16,14 @@ def getConn():
     return conn 
 
 def initialize():
-    runQuery("CREATE TABLE IF NOT EXISTS buys (stockName varchar(48) NOT NULL,  buyPrice varchar(48) NOT NULL, amount INT NOT NULL, timestamp TIMESTAMP DEFAULT NOW(),enabled integer NOT NULL DEFAULT '1');")
-    addTestData();
+    #table to store current buys
+    runQuery("CREATE TABLE IF NOT EXISTS buys (stockName varchar(48) NOT NULL, buyPrice varchar(48) NOT NULL, amount INT NOT NULL, timestamp TIMESTAMP DEFAULT NOW());")
+    
+    #table to store sells 
+    runQuery("CREATE TABLE IF NOT EXISTS sells (stockName varchar(48) NOT NULL, sellPrice varchar(48) NOT NULL, amount INT NOT NULL, timestamp TIMESTAMP DEFAULT NOW());")
+    
+    
+    #addTestData();
 
 def runQuery(q):
     conn = getConn()

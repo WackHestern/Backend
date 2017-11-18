@@ -1,5 +1,6 @@
 from flask import Flask, json, request
 import database
+import stocks
 import os
 
 app = Flask(__name__)
@@ -25,22 +26,30 @@ def api_root():
 
 @app.route('/stocks/buy', methods=['Post', 'Get'])
 def buyStock():
-    ret = {'message': 'buy stock is not implemented yet'}
-    return json.dumps(ret)
+    
+    if request.headers['Content-Type'] != 'application/json':
+        return json.dumps({'message': 'invalid'})
+
+    data = json.loads(json.dumps(request.json))
+    
+    #if (stocks.buyStock(data["stockName"], data["amount"])):
+    if (stocks.buyStock("TSLA", 3)):
+        return json.dumps({'message': 'success'})
+    return json.dumps({'message': 'fail'})
 
 
 @app.route('/stocks/sell', methods=['Post', 'Get'])
 def sellStock():
-    ret = {'message': 'sell stock is not implemented yet'}
+    ret = stocks.sell()
     return json.dumps(ret)
 
 
 @app.route('/stocks/data', methods =['Post', 'Get'])
 def getStockData():
     
-    t = database.runQueryWithResponse("select * from buys")
+    #t = database.runQueryWithResponse("select * from buys")
     
-    ret = {'message': t}
+    ret = {'message': stocks.data()}
     return json.dumps(ret)
 
 
