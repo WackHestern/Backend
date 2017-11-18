@@ -64,10 +64,10 @@ def sellData():
         return []
 
 
-def getStockCntByName(name):
+def getStockCntByName(stockName):
     try:
-        resBuy = database.runQueryWithResponse("select * from buys where stockname='"+name+"'")
-        resSell = database.runQueryWithResponse("select * from sells where stockname='"+name+"'")
+        resBuy = database.runQueryWithResponse("select * from buys where stockname='"+stockName+"'")
+        resSell = database.runQueryWithResponse("select * from sells where stockname='"+stockName+"'")
     except:
         print ("error")
         return 0
@@ -80,5 +80,20 @@ def getStockCntByName(name):
     
     return cnt
     
-
-
+def canBuy(stockName, amount):
+    price = float(stockapi.getPrice(stockName))
+    
+    availFunds = float(users.getAvailableFunds())
+    
+    cost= float(amount) * float(price)
+    #make sure user has enough funds and update funds after buying
+    if  cost > availFunds:
+        return False
+    return True
+    
+def canSell(stockName, amount):
+    curStockCnt= int(getStockCntByName(stockName))
+    amount = int(amount)
+    if curStockCnt < amount:
+        return False
+    return True

@@ -66,6 +66,15 @@ def getUserAvailableFunds():
     return json.dumps(ret)
 
 
+@app.route('/stocks/cansell', methods=['Post', 'Get'])
+def canSellStock():
+    json.dumps({"result": stocks.canSell("TSLA",2)})
+    
+@app.route('/stocks/canbuy', methods=['Post', 'Get'])
+def canBuyStock():
+    json.dumps({"result": stocks.canBuy("TSLA",2)})
+
+
 
 if __name__ == '__main__':
     database.initialize() 
