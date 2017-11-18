@@ -7,7 +7,7 @@ def buy(stockName, amount):
     if (float(price) < 0):
         return False
     
-    database.runQuery("INSERT INTO buys ("+stockName+", buyprice, amount) VALUES ('"+stockName+"','"+str(price)+"',"+str(amount)+")")
+    database.runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('"+stockName+"','"+str(price)+"',"+str(amount)+")")
     
     return True
 
