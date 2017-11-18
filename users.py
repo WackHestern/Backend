@@ -2,8 +2,21 @@ import database
 import stockapi
 
 
-def getAvailableFunds(name):
+def getAvailableFunds():
     try:
-        return database.runQueryWithResponse("select availableFunds from users where name='"+name+"';")[0]
+        return database.runQueryWithResponse("select availableFunds from users where name='John Doe';")[0]
     except:
         return "-1"
+    
+
+#returns true if success
+def updateFunds(newAmount):
+    try:
+        database.runQueryWithResponse("update user set availableFunds = '"+str(newAmount)+"' where name='John Doe';")
+    except:
+        return False
+    
+    
+    return True
+    
+    

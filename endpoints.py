@@ -38,15 +38,16 @@ def buyStock():
     #data = json.loads(json.dumps(request.json))
     
     #if (stocks.buyStock(data["stockName"], data["amount"])):
-    if (stocks.buy("TSLA", 3)):
-        return json.dumps({'message': 'success'})
-    return json.dumps({'message': 'fail'})
+    ret = stocks.buy("TSLA", 3)
+    return json.dumps({'message': ret})
+    #ret = success, fail, insufficient funds
 
 
 @app.route('/stocks/sell', methods=['Post', 'Get'])
 def sellStock():
-    ret = stocks.sell()
-    return json.dumps(ret)
+    ret = stocks.sell("TSLA", 2)
+    return json.dumps({'message': ret})
+    #ret = success, fail, insufficient stocks
 
 
 @app.route('/stocks/data', methods =['Post', 'Get'])
@@ -61,7 +62,7 @@ def getStockData():
 @app.route('/user/availablefunds', methods =['Post', 'Get'])
 def getUserAvailableFunds():
         
-    ret = {'availableFunds': users.getAvailableFunds("John Doe") }
+    ret = {'availableFunds': users.getAvailableFunds() }
     return json.dumps(ret)
 
 
