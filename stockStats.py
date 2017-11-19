@@ -21,7 +21,7 @@ def getCntOnDay(stockName, day):
             print (date)
             date = date.isoformat()
             print (date)
-            date = date[0:11].split("-")
+            date = date[0:10].split("-")
             print (date)
             date = int("".join(date))
             print (date)
