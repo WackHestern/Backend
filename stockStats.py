@@ -13,17 +13,21 @@ def getCntOnDay(stockName, day):
     try:
         buys = stocks.buyData()
         sells = stocks.sellData()
-        
+        print (buys)
         for b in buys:
             if b[0] != stockName:
                 continue
             date = datetime.strptime(b[3], '%a, %d %b %Y %H:%M:%S')
+            print (date)
             date = date.isoformat()
+            print (date)
             date = date[0:11].split("-")
+            print (date)
             date = int("".join(date))
+            print (date)
             
             if date <= day:
-                cnt += b[2]
+                cnt +=int( b[2])
         
     except Exception:
         print ("failed to find count of stock on day")
@@ -61,8 +65,8 @@ def generateDataHistory():
             
             if day not in ret:
                 ret[day] = []
-                
-            ret[day].append({sn: price * cnt})
+            if cnt >0:
+                ret[day].append({sn: price * cnt})
     print (ret)
     return ret
     
