@@ -124,6 +124,24 @@ def genDataHistory():
 def getCurrentStocks():
     return json.dumps({"message": stocks.getCurrentList()})
 
+
+@app.route('/stocks/price', methods=['Post', 'Get'])
+def getPriceByName():
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    return json.dumps({"message": stockapi.getPrice(data["stockName"])})
+    
+    
+@app.route('/stocks/numowned',  methods=['Post', 'Get'])
+def getNumOwned():
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    return json.dumps({"message": stocks.getStockCntByName(data["stockName"])})
+    
 if __name__ == '__main__':
     database.initialize() 
     port = int(os.environ.get("PORT", 1337))
