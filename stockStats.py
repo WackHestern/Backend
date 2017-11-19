@@ -39,7 +39,7 @@ def listStocks():
     try:
         ret = database.runQueryWithResponse("SELECT DISTINCT stockName FROM buys;")
         ret = [x[0] for x in ret]
-        print ret
+        print (ret)
     except Exception:
         print ("failed to generate list of unique stock names")
         return []
@@ -63,6 +63,6 @@ def generateDataHistory():
                 ret[day] = []
                 
             ret[day].append({sn: price * cnt})
-        
+    print (ret)
     return ret
     
