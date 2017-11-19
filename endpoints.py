@@ -142,6 +142,14 @@ def getNumOwned():
     data = json.loads(json.dumps(request.json))
     return json.dumps({"message": stocks.getStockCntByName(data["stockName"])})
     
+    
+@app.route('/stocks/lastadded',  methods=['Post', 'Get'])
+def getLastAdded():
+    return json.dumps({"message": stocks.getLastAdded()})
+    
+    
+    
+    
 if __name__ == '__main__':
     database.initialize() 
     port = int(os.environ.get("PORT", 1337))
