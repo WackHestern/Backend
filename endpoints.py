@@ -96,12 +96,21 @@ def canSellStock():
 
 @app.route('/stocks/canbuy', methods=['Post', 'Get'])
 def canBuyStock():
+    '''
     if not request.headers or 'application/json' not in request.headers['Content-Type'] :
         return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
     return json.dumps({"result": stocks.canBuy(data["stockName"], data["amount"])})
-
+'''
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+   
+    data = json.loads(json.dumps(request.json))
+    
+    ret = stocks.buy(data["stockName"], data["amount"])
+    return json.dumps({'message': ret})
+    #ret = success, fail, insufficient funds
 
 @app.route('/stocks/isvalid', methods=['Post', 'Get'])
 def isValidStockName():
@@ -111,10 +120,21 @@ def isValidStockName():
     data = json.loads(json.dumps(request.json))
     return json.dumps({"result": stocks.isValidName(data["stockName"])})
 
+
+#past 10 days in order, give stockName=> value
+@app.route('/stocks/datahistory', methods=['Post', 'Get'])
+def genDataHistory():
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    return json.dumps({"data": stockStats.generateDataHistory()})
+    
+
 if __name__ == '__main__':
     database.initialize() 
     port = int(os.environ.get("PORT", 1337))
     app.run(debug=True, host='0.0.0.0', port=port)
     
-    
+
 
