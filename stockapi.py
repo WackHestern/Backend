@@ -39,6 +39,3 @@ def getPrice(stockName):
         
     except Exception:
         return -1
-
-print (getLast10DayPrices("MSFT"))
-print (getPrice("TSLA"))

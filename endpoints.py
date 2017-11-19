@@ -60,13 +60,13 @@ def sellStock():
 def getStockData():
     ret1 = stocks.buyData()
     ret2 = stocks.sellData()
-    return json.dumps({'buyData': ret1, 'sellData': ret2})
+    return json.dumps("message": {'buyData': ret1, 'sellData': ret2})
 
 
 @app.route('/user/availablefunds', methods =['Post', 'Get'])
 def getUserAvailableFunds():      
     ret = users.getAvailableFunds()
-    return json.dumps({'availableFunds': ret })
+    return json.dumps({'message': ret })
 
 
 @app.route('/user/setfunds', methods = ['Post', 'Get'])
@@ -90,7 +90,7 @@ def canSellStock():
 
     data = json.loads(json.dumps(request.json))
     
-    return json.dumps({"result": stocks.canSell(data["stockName"], data["amount"])})
+    return json.dumps({"message": stocks.canSell(data["stockName"], data["amount"])})
     
     
 
@@ -101,7 +101,7 @@ def canBuyStock():
         return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
-    return json.dumps({"result": stocks.canBuy(data["stockName"], data["amount"])})
+    return json.dumps({"message": stocks.canBuy(data["stockName"], data["amount"])})
 
 @app.route('/stocks/isvalid', methods=['Post', 'Get'])
 def isValidStockName():
@@ -109,7 +109,7 @@ def isValidStockName():
         return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
-    return json.dumps({"result": stocks.isValidName(data["stockName"])})
+    return json.dumps({"message": stocks.isValidName(data["stockName"])})
 
 
 #past 10 days in order, give stockName=> value
@@ -119,7 +119,7 @@ def genDataHistory():
         return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
-    return json.dumps({"data": stockStats.generateDataHistory()})
+    return json.dumps({"message": stockStats.generateDataHistory()})
     
 
 if __name__ == '__main__':
