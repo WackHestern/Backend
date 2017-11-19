@@ -8,8 +8,8 @@ def getCntOnDay(stockName, day):
 
 def generateDataHistory():
     #for each day
-    #list of stocks
-    # generate
+    #list of {stocks : value}
+    
     
     pass
     
