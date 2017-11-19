@@ -1,6 +1,7 @@
 import database
 import stockapi
 import users
+import datetime
  
 #return true if succeed 
 def buy(stockName, amount):
