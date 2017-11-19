@@ -48,8 +48,8 @@ def runQueryWithResponse(q):
     return ret
 
 def addTestData():
-    runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('apple','120',2)")
-    runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('google','400',7)")
-    runQuery("INSERT INTO buys (stockname, buyprice, amount) VALUES ('apple','23',10)")
+    runQuery("INSERT INTO buys (stockname, buyprice, amount, timestamp) VALUES ('AAPL','120',2,'2017-11-13 18:25:31.030608')")
+    runQuery("INSERT INTO buys (stockname, buyprice, amount, timestamp) VALUES ('GOOGL','400',7, '2017-11-14 18:25:31.030608')")
+    runQuery("INSERT INTO buys (stockname, buyprice, amount, timestamp) VALUES ('TSLA','23',10, ':wq2017-11-16 18:25:31.030608')")
     runQuery("INSERT INTO users (name, availablefunds) VALUES ('John Doe','5000.34')")
 

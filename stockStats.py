@@ -17,7 +17,7 @@ def getCntOnDay(stockName, day):
         for b in buys:
             if b[0] != stockName:
                 continue
-            date = datetime.strptime(b[3], '%a, %d %b %Y %H:%M:%S')
+            date = b[3]
             print (date)
             date = date.isoformat()
             print (date)
