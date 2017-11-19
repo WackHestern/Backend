@@ -16,7 +16,7 @@ def getLast10DayPrices(stockName):
         times= [datetime.datetime.strptime(ts, "%Y-%m-%d") for ts in times]
         times = sorted(times)
         times = [datetime.datetime.strftime(ts, "%Y-%m-%d") for ts in times]
-        for i in range (min(9, len(times)-1), -1,-1): #for each day
+        for i in range (len(times)-1, max(0, len(times)-11),-1): #for each day
             day = times[i]
             price = data[day]["2. high"]
             ret.append([day,price])
