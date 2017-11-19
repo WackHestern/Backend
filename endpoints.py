@@ -3,6 +3,7 @@ import database
 import stocks
 import users
 import stockapi
+import stockStats
 import os
 
 app = Flask(__name__)
