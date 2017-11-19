@@ -13,7 +13,6 @@ def getCntOnDay(stockName, day):
     try:
         buys = stocks.buyData()
         sells = stocks.sellData()
-        print (buys)
         for b in buys:
             if b[0] != stockName:
                 continue

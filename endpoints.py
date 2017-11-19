@@ -119,6 +119,11 @@ def genDataHistory():
     return json.dumps({"message": stockStats.generateDataHistory()})
     
 
+    
+@app.route('/stocks/current', methods=['Post', 'Get'])
+def getCurrentStocks():
+    return json.dumps({"message": stocks.getCurrentList()})
+
 if __name__ == '__main__':
     database.initialize() 
     port = int(os.environ.get("PORT", 1337))

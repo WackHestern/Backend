@@ -104,3 +104,26 @@ def canSell(stockName, amount):
 
 def isValidName(stockName):
     return float(stockapi.getPrice(stockName.upper())) >= 0
+
+
+def getCurrentList():
+    buys = buyData()
+    sells = sellData()
+    ret = {} #key: stockName, value: amount
+    
+    tmp={}
+    for b in buys:
+        name = b[0]
+        cnt = int(b[2])
+        tmp[name] = tmp.get(name,0)+cnt
+    
+    for b in sells:
+        name = b[0]
+        cnt = int(b[2])
+        tmp[name] = tmp.get(name,0)-cnt
+    
+    for k in tmp.keys():
+        if tmp[k] >0:
+            ret[k] = tmp[k]
+    
+    return ret
