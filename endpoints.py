@@ -115,10 +115,6 @@ def isValidStockName():
 #past 10 days in order, give stockName=> value
 @app.route('/stocks/datahistory', methods=['Post', 'Get'])
 def genDataHistory():
-    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
-        return json.dumps({'message': 'invalid post'})
-
-    data = json.loads(json.dumps(request.json))
     return json.dumps({"message": stockStats.generateDataHistory()})
     
 
