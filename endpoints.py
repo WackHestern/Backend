@@ -35,6 +35,7 @@ def buyStock():
     #if not request.headers or request.headers['Content-Type'] != 'application/json':
     #    return json.dumps({'message': 'invalid post'})
     print (request.data)
+    print (request.form)
     print (request)
     data = json.loads(request.data)
     
