@@ -4,6 +4,7 @@ import users
  
 #return true if succeed 
 def buy(stockName, amount):
+    stockName=stockName.upper()
     price = stockapi.getPrice(stockName)
     
     #make sure price is valid
@@ -27,6 +28,7 @@ def buy(stockName, amount):
 
 
 def sell(stockName, amount):
+    stockName = stockName.upper()
     price = float(stockapi.getPrice(stockName))
     
     if (price < 0):
@@ -65,6 +67,7 @@ def sellData():
 
 
 def getStockCntByName(stockName):
+    stockName = stockName.upper()
     try:
         resBuy = database.runQueryWithResponse("select * from buys where stockname='"+stockName+"'")
         resSell = database.runQueryWithResponse("select * from sells where stockname='"+stockName+"'")
@@ -81,7 +84,7 @@ def getStockCntByName(stockName):
     return cnt
     
 def canBuy(stockName, amount):
-    price = float(stockapi.getPrice(stockName))
+    price = float(stockapi.getPrice(stockName.upper()))
     
     availFunds = float(users.getAvailableFunds())
     
@@ -92,8 +95,12 @@ def canBuy(stockName, amount):
     return True
     
 def canSell(stockName, amount):
-    curStockCnt= int(getStockCntByName(stockName))
+    curStockCnt= int(getStockCntByName(stockName.upper()))
     amount = int(amount)
     if curStockCnt < amount:
         return False
     return True
+
+
+def isValidName(stockName):
+    return float(stockapi.getPrice(stockName.upper())) >= 0

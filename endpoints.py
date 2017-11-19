@@ -2,6 +2,7 @@ from flask import Flask, json, request
 import database
 import stocks
 import users
+import stockapi
 import os
 
 app = Flask(__name__)
@@ -100,6 +101,14 @@ def canBuyStock():
     data = json.loads(json.dumps(request.json))
     return json.dumps({"result": stocks.canBuy(data["stockName"], data["amount"])})
 
+
+@app.route('/stocks/isvalid', methods=['Post', 'Get'])
+def isValidStockName():
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    return json.dumps({"result": stocks.isValidName(data["stockName"])})
 
 if __name__ == '__main__':
     database.initialize() 
