@@ -60,7 +60,7 @@ def sellStock():
 def getStockData():
     ret1 = stocks.buyData()
     ret2 = stocks.sellData()
-    return json.dumps("message": {'buyData': ret1, 'sellData': ret2})
+    return json.dumps({"message": {'buyData': ret1, 'sellData': ret2}})
 
 
 @app.route('/user/availablefunds', methods =['Post', 'Get'])
