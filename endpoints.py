@@ -34,7 +34,8 @@ def buyStock():
     
     #if not request.headers or request.headers['Content-Type'] != 'application/json':
     #    return json.dumps({'message': 'invalid post'})
-
+    print (request.data)
+    print (request)
     data = json.loads(request.data)
     
     ret = stocks.buy(data["stockName"], data["amount"])
