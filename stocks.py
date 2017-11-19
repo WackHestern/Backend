@@ -133,7 +133,7 @@ def getCurrentList():
 def getLastAdded():
     try:
         rBuy = database.runQueryWithResponse("select stockname, buyprice, amount, timestamp from buys order by timestamp desc limit 1;")
-        rSell = database.runQueryWithResponse("select stockname, buyprice, amount, timestamp from sells order by timestamp desc limit 1;")
+        rSell = database.runQueryWithResponse("select stockname, sellprice, amount, timestamp from sells order by timestamp desc limit 1;")
 
         print (rBuy)
         print (rSell)
@@ -159,7 +159,7 @@ def getPortfolioValue():
     cnt=0.0
     
     for s in stocks:
-        cnt += getStockCntByName(s) * max(stockapi.getPrice(s),0)
+        cnt += float(getStockCntByName(s)) * max(float(stockapi.getPrice(s)),0.0)
     
     return str(cnt)
     
