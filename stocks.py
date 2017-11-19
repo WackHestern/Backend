@@ -139,7 +139,7 @@ def getLastAdded():
         print (rBuy)
         print (rSell)
         dateBuy = rBuy[3]
-        dateSell = sBuy[3]
+        dateSell = rSell[3]
         print (dateBuy)
         print (dateSell)
 
