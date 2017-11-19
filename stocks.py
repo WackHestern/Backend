@@ -133,8 +133,8 @@ def getCurrentList():
 
 def getLastAdded():
     try:
-        rBuy = database.runQueryWithResponse("select stockname, buyprice, amount, timestamp from buys order by timestamp desc limit 1;")
-        rSell = database.runQueryWithResponse("select stockname, sellprice, amount, timestamp from sells order by timestamp desc limit 1;")
+        rBuy = database.runQueryWithResponse("select stockname, buyprice, amount, timestamp from buys order by timestamp desc limit 1;")[0]
+        rSell = database.runQueryWithResponse("select stockname, sellprice, amount, timestamp from sells order by timestamp desc limit 1;")[0]
 
         print (rBuy)
         print (rSell)
