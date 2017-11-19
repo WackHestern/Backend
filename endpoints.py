@@ -32,12 +32,10 @@ def api_root():
 @app.route('/stocks/buy', methods=['Post', 'Get'])
 def buyStock():
     
-    #if not request.headers or request.headers['Content-Type'] != 'application/json':
-    #    return json.dumps({'message': 'invalid post'})
-    print (request.data)
-    print (request.form)
-    print (request)
-    data = json.loads(request.data)
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+   
+    data = json.loads(json.dumps(request.json))
     
     ret = stocks.buy(data["stockName"], data["amount"])
     return json.dumps({'message': ret})
@@ -46,12 +44,8 @@ def buyStock():
 
 @app.route('/stocks/sell', methods=['Post', 'Get'])
 def sellStock():
-    print (request.data)
-    print (request.form)
-    print (request)
-    print (request.headers)
-    print (request.json)
-    if not request.headers or request.headers['Content-Type'] != 'application/json':
+
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
         return json.dumps({'message': 'invalid post'})
     
     data = json.loads(json.dumps(request.json))
@@ -75,7 +69,7 @@ def getUserAvailableFunds():
 
 @app.route('/user/setfunds', methods = ['Post', 'Get'])
 def setUserFunds():
-    if not request.headers or request.headers['Content-Type'] != 'application/json':
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
         return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
@@ -89,7 +83,7 @@ def setUserFunds():
 
 @app.route('/stocks/cansell', methods=['Post', 'Get'])
 def canSellStock():
-    if not request.headers or request.headers['Content-Type'] != 'application/json':
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
         return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
@@ -100,7 +94,7 @@ def canSellStock():
 
 @app.route('/stocks/canbuy', methods=['Post', 'Get'])
 def canBuyStock():
-    if not request.headers or request.headers['Content-Type'] != 'application/json':
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
         return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
