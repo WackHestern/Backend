@@ -100,8 +100,6 @@ def canBuyStock():
     return json.dumps({"result": stocks.canBuy(data["stockName"], data["amount"])})
 
 
-def 
-
 if __name__ == '__main__':
     database.initialize() 
     port = int(os.environ.get("PORT", 1337))
