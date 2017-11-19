@@ -6,6 +6,10 @@ import users
 def getCntOnDay(stockName, day):
     pass
 
+def listStocks():
+    pass
+
+
 def generateDataHistory():
     #for each day
     #list of {stocks : value}
