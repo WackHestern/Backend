@@ -18,16 +18,23 @@ def getCntOnDay(stockName, day):
             if b[0] != stockName:
                 continue
             date = b[3]
-            print (date)
             date = date.isoformat()
-            print (date)
             date = date[0:10].split("-")
-            print (date)
             date = int("".join(date))
-            print (date)
             
             if date <= day:
                 cnt +=int( b[2])
+                
+        for b in sells:
+            if b[0] != stockName:
+                continue
+            date = b[3]
+            date = date.isoformat()
+            date = date[0:10].split("-")
+            date = int("".join(date))
+            
+            if date <= day:
+                cnt -=int( b[2])
         
     except Exception:
         print ("failed to find count of stock on day")
