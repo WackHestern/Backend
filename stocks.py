@@ -134,6 +134,9 @@ def getCurrentList():
 def getLastAdded():
     try:
         rBuy = database.runQueryWithResponse("select stockname, buyprice, amount, timestamp from buys order by timestamp desc limit 1;")[0]
+        return rBuy[0]
+        
+        '''
         rSell = database.runQueryWithResponse("select stockname, sellprice, amount, timestamp from sells order by timestamp desc limit 1;")[0]
 
         print (rBuy)
@@ -144,13 +147,13 @@ def getLastAdded():
         print (dateSell)
 
         if dateSell < dateBuy:
-            return {"stockName":rBuy[0], "price": rBuy[1], "amount": rBuy[2], "timestamp": rBuy[3], "action":"buy"}
+            return rBuy[0]
         else:
             return {"stockName":rSell[0], "price": rSell[1], "amount": rSell[2], "timestamp": rSell[3], "action":"sell"}
-        
+        '''
     except Exception:
         print ("failed to get last added")
-    return {}
+    return "fail"
         
 
 
