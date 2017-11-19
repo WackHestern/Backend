@@ -58,12 +58,22 @@ def sellStock():
 
 @app.route('/stocks/data', methods =['Post', 'Get'])
 def getStockData():
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    
     ret = {'buyData': stocks.buyData(), 'sellData': stocks.sellData()}
     return json.dumps(ret)
 
 
 @app.route('/user/availablefunds', methods =['Post', 'Get'])
-def getUserAvailableFunds():        
+def getUserAvailableFunds():      
+    if not request.headers or 'application/json' not in request.headers['Content-Type'] :
+        return json.dumps({'message': 'invalid post'})
+
+    data = json.loads(json.dumps(request.json))
+    
     ret = {'availableFunds': users.getAvailableFunds() }
     return json.dumps(ret)
 
