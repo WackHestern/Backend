@@ -147,7 +147,10 @@ def getNumOwned():
 def getLastAdded():
     return json.dumps({"message": stocks.getLastAdded()})
     
-    
+
+@app.route('/stocks/portfoliovalue', methods=['Post', 'Get'])
+def getPortfolioValue():
+    return json.dumps({"message": stocks.getPortfolioValue()})
     
     
 if __name__ == '__main__':

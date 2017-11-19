@@ -135,9 +135,12 @@ def getLastAdded():
         rBuy = database.runQueryWithResponse("select stockname, buyprice, amount, timestamp from buys order by timestamp desc limit 1;")
         rSell = database.runQueryWithResponse("select stockname, buyprice, amount, timestamp from sells order by timestamp desc limit 1;")
 
-
+        print (rBuy)
+        print (rSell)
         dateBuy = rBuy[3]
         dateSell = sBuy[3]
+        print (dateBuy)
+        print (dateSell)
 
         if dateSell < dateBuy:
             return {"stockName":rBuy[0], "price": rBuy[1], "amount": rBuy[2], "timestamp": rBuy[3], "action":"buy"}
@@ -148,7 +151,17 @@ def getLastAdded():
         print ("failed to get last added")
     return {}
         
-        
+
+
+def getPortfolioValue():
+    stocks= getCurrentList()
+    
+    cnt=0.0
+    
+    for s in stocks:
+        cnt += getStockCntByName(s) * max(stockapi.getPrice(s),0)
+    
+    return str(cnt)
     
 
 
