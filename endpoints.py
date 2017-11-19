@@ -32,8 +32,8 @@ def api_root():
 @app.route('/stocks/buy', methods=['Post', 'Get'])
 def buyStock():
     
-    if not request.headers or request.headers['Content-Type'] != 'application/json':
-        return json.dumps({'message': 'invalid post'})
+    #if not request.headers or request.headers['Content-Type'] != 'application/json':
+    #    return json.dumps({'message': 'invalid post'})
 
     data = json.loads(json.dumps(request.json))
     
@@ -100,8 +100,12 @@ def canBuyStock():
     return json.dumps({"result": stocks.canBuy(data["stockName"], data["amount"])})
 
 
+def 
 
 if __name__ == '__main__':
     database.initialize() 
     port = int(os.environ.get("PORT", 1337))
     app.run(debug=True, host='0.0.0.0', port=port)
+    
+    
+
